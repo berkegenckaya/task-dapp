@@ -18,6 +18,10 @@ contract Manager {
         tickets[_index].name = _name;
     }
 
+    function deleteTicket(uint256 _index) external {
+        delete tickets[_index];
+    }
+
     function updateTicketStatus(uint256 _index, uint8 _status) external {
         tickets[_index].status = _status;
     }

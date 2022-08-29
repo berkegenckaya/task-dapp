@@ -26,6 +26,11 @@ function App() {
     await transaction.wait();
     getTickets();
   };
+  const deleteTicket = async (_index) => {
+    const transaction = await contract.deleteTicket(_index);
+    await transaction.wait();
+    getTickets();
+  };
 
   const renameTicket = async (_index) => {
     let newName = prompt("Please enter new ticket name", "");
@@ -44,7 +49,7 @@ function App() {
       setAccount(accounts[0]);
       setContract(
         new ethers.Contract(
-          "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+          "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
           Manager.abi,
           newSigner
         )
@@ -87,7 +92,7 @@ function App() {
       </div>
 
       <div className="main">
-        <div className="main-col" style={{ backgroundColor: "LightPink" }}>
+        <div className="main-col" style={{ backgroundColor: "#f4f4f2" }}>
           <div className="main-col-heading">Todo</div>
           {tickets
             .map((t, i) => ({ id: i, item: t }))
@@ -100,7 +105,7 @@ function App() {
                   <div className="main-ticket-button-section">
                     <button
                       className="small-button"
-                      style={{ backgroundColor: "lightGreen" }}
+                      style={{ backgroundColor: "#64b6ac" }}
                       onClick={() => updateTicketStatus(ticket.id, 1)}
                     >
                       Busy
@@ -114,17 +119,24 @@ function App() {
                     </button>
                     <button
                       className="small-button"
-                      style={{ backgroundColor: "lightYellow" }}
+                      style={{ backgroundColor: "#c0fdfb" }}
                       onClick={() => renameTicket(ticket.id)}
                     >
                       Rename
+                    </button>
+                    <button
+                      className="small-button"
+                      style={{ backgroundColor: "#ff6b6b" }}
+                      onClick={() => deleteTicket(ticket.id)}
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
               );
             })}
         </div>
-        <div className="main-col" style={{ backgroundColor: "LightGreen" }}>
+        <div className="main-col" style={{ backgroundColor: "#64b6ac" }}>
           <div className="main-col-heading">Busy</div>
           {tickets
             .map((t, i) => ({ id: i, item: t }))
@@ -137,7 +149,7 @@ function App() {
                   <div className="main-ticket-button-section">
                     <button
                       className="small-button"
-                      style={{ backgroundColor: "lightPink" }}
+                      style={{ backgroundColor: "#f4f4f2" }}
                       onClick={() => updateTicketStatus(ticket.id, 0)}
                     >
                       Todo
@@ -151,10 +163,17 @@ function App() {
                     </button>
                     <button
                       className="small-button"
-                      style={{ backgroundColor: "lightYellow" }}
+                      style={{ backgroundColor: "#c0fdfb" }}
                       onClick={() => renameTicket(ticket.id)}
                     >
                       Rename
+                    </button>
+                    <button
+                      className="small-button"
+                      style={{ backgroundColor: "#ff6b6b" }}
+                      onClick={() => deleteTicket(ticket.id)}
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
@@ -174,24 +193,31 @@ function App() {
                   <div className="main-ticket-button-section">
                     <button
                       className="small-button"
-                      style={{ backgroundColor: "lightGreen" }}
+                      style={{ backgroundColor: "#64b6ac" }}
                       onClick={() => updateTicketStatus(ticket.id, 1)}
                     >
                       Busy
                     </button>
                     <button
                       className="small-button"
-                      style={{ backgroundColor: "lightPink" }}
+                      style={{ backgroundColor: "#f4f4f2" }}
                       onClick={() => updateTicketStatus(ticket.id, 0)}
                     >
                       Todo
                     </button>
                     <button
                       className="small-button"
-                      style={{ backgroundColor: "lightYellow" }}
+                      style={{ backgroundColor: "#c0fdfb" }}
                       onClick={() => renameTicket(ticket.id)}
                     >
                       Rename
+                    </button>
+                    <button
+                      className="small-button"
+                      style={{ backgroundColor: "#ff6b6b" }}
+                      onClick={() => deleteTicket(ticket.id)}
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
